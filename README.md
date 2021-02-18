@@ -6,7 +6,7 @@ A sample project that exists as an aid to the [Python Packaging User
 Guide][packaging guide]'s [Tutorial on Packaging and Distributing
 Projects][distribution tutorial].
 
-A test file
+A test file in dev branch
 
 This project does not aim to cover best practices for Python project
 development as a whole. For example, it does not provide guidance or tool
