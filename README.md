@@ -21,6 +21,7 @@ accordingly to adapt this sample project to your needs.
 ----
 
 This is the README file for the project.
+test
 
 The file should use UTF-8 encoding and can be written using
 [reStructuredText][rst] or [markdown][md use] with the appropriate [key set][md
