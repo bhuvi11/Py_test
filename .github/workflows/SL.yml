@@ -14,6 +14,7 @@ jobs:
     - run: echo "GITHUB_WORKSPACE = $GITHUB_WORKSPACE"
       shell: bash
     - run: echo hello wednesday > math-homework.txt
+    - run: echo ${{github.ref}}
     #- name: test
      # run : |
       # echo "::set-output name=action_fruit::${github.workspace}/math-homework.txt" 
