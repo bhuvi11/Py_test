@@ -1,41 +1,35 @@
-# A sample workflow which checks out your Infrastructure as Code Configuration files,
-# such as Kubernetes, Helm & Terraform and scans them for any security issues.
-# The results are then uploaded to GitHub Security Code Scanning
-#
-# For more examples, including how to limit scans to only high-severity issues
-# and fail PR checks, see https://github.com/snyk/actions/
-
-name: Snyk Scan through API call
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    # The branches below must be a subset of the branches above
-    branches: [ main ]
-  workflow_dispatch:
-    branches: [ main ]
-  #schedule:
-   # - cron: '27 12 * * 4'
-
+on: [pull_request,workflow_dispatch,push] 
+ 
 jobs:
-  snyk:
+  hello_world_job:
     runs-on: ubuntu-latest
+    name: A job to say hello
     steps:
-      - uses: actions/checkout@v2
-      - name: Run Snyk to check configuration files for security issues
-        # Snyk can be used to break the build when it detects security issues.
-        # In this case we want to upload the issues to GitHub Code Scanning
-        continue-on-error: true
-        uses: snyk/actions/maven@master
-        env:
-          # In order to use the Snyk Action you will need to have a Snyk API token.
-          # More details in https://github.com/snyk/actions#getting-your-snyk-token
-          # or you can signup for free at https://snyk.io/login
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          command: monitor
-      - name: Upload result to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@v1
-        with:
-          sarif_file: snyk.sarif
+    - uses: actions/checkout@v2
+    - id: foo
+      uses: bhuvi11/Test_action@v3
+      with:
+        who-to-greet: 'Testing for bhuvi repository action'
+    - run: echo random-number ${{ steps.foo.outputs.random-number }}
+    - run: echo "GITHUB_WORKSPACE = $GITHUB_WORKSPACE"
+    - run: echo ${{(github.event.pull_request.number)}}
+      shell: bash
+    - run: echo hello world > math-homework.txt
+    - run: echo "Branch where push happened:${{github.ref}}
+    - name: test
+      run : |
+       echo "::set-output name=action_fruit::${{github.workspace}}/math-homework.txt" 
+      id: run_test
+    - name: get test
+      run: echo ${{(steps.run_test.outputs.action_fruit)}}
+    
+    - uses: actions/upload-artifact@v2
+      with: 
+         name: homework
+         path: math-homework.txt
+
+       
+    - uses: actions/download-artifact@v2
+      with:
+       name: homework
+       
