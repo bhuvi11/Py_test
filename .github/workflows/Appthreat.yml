@@ -13,9 +13,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v1
      
-    - name: Test with pytest
-      run: |
-        pytest --cov=depscan test
+    
     - name: Self dep-scan
       uses: AppThreat/dep-scan-action@master
       
