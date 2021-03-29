@@ -29,3 +29,8 @@ jobs:
 
     - name: Self dep-scan
       uses: AppThreat/dep-scan-action@master
+    - name: Upload scan reports
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: sast-scan-reports
+        path: reports
